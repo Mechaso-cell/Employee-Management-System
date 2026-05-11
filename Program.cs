@@ -1,4 +1,7 @@
 
+using Employee.api.Model;
+using Microsoft.EntityFrameworkCore;
+
 namespace Employee.api
 {
     public class Program
@@ -10,6 +13,9 @@ namespace Employee.api
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<EmployeeDbContext>(opt =>
+            opt.UseSqlServer(builder.Configuration.GetConnectionString("empCon")));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

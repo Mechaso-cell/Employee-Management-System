@@ -7,10 +7,11 @@ namespace Employee.api.Model
         public EmployeeDbContext(DbContextOptions options) : base(options)
         {
         }
-        public EmployeeDbContext()
-        {
+        public DbSet<Employee> Employees { get; set; }
 
-        }
-       
+        public DbSet<Employee> departments { get; set; }
+
+        public DbSet<Employee> designations { get; set; }
+
     }
 }
