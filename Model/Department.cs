@@ -6,7 +6,9 @@ namespace Employee.api.Model
     [Table("department1Tbl")]
     public class Department
     {
+        [Key]
         public int departmentId { get; set; }
+
         [Required, MaxLength(50)]
         public string departmentName { get; set; } = string.Empty;
 

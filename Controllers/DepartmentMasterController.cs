@@ -1,5 +1,4 @@
 ﻿using Employee.api.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee.api.Controllers
@@ -8,23 +7,19 @@ namespace Employee.api.Controllers
     [ApiController]
     public class DepartmentMasterController : ControllerBase
     {
-        private readonly EmployeeDbContext
-            _context;
+        private readonly EmployeeDbContext _context;
 
         public DepartmentMasterController(EmployeeDbContext context)
-        
-            {
-                _context = context;
-            }
+        {
+            _context = context;
+        }
 
-            //  [HttpGet("GetAllDepartments")]
-            [HttpGet("GetAllDepartments")]  
+        [HttpGet("GetAllDepartments")]
+        public IActionResult GetDepartment()
+        {
+            var deptList = _context.departments.ToList();
 
-            public IActionResult GetDepartment()
-            {
-                var deptList = _context.departments.ToList();
-                return Ok(deptList);
-            }
-        
+            return Ok(deptList);
+        }
     }
 }

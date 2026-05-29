@@ -3,17 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Employee.api.Model
 {
+    [Table("designationTbl")]
     public class Designation
     {
-        [Table("department1Tbl")]
-        public class Department
-        {
-            public int departmentId { get; set; }
-            [Required, MaxLength(50)]
-            public string departmentName { get; set; } = string.Empty;
+        [Key]
+        public int designationId { get; set; }
 
-            public bool isActive { get; set; }
-        }
+        [Required, MaxLength(50)]
+        public string designationName { get; set; } = string.Empty;
+
+        public bool isActive { get; set; }
     }
 }
-
