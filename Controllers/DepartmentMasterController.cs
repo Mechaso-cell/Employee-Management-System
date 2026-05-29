@@ -20,7 +20,7 @@ namespace Employee.api.Controllers
             //  [HttpGet("GetAllDepartments")]
             [HttpGet("GetAllDepartments")]  
 
-            public IActionResult GetAllDepartment()
+            public IActionResult GetDepartment()
             {
                 var deptList = _context.departments.ToList();
                 return Ok(deptList);
