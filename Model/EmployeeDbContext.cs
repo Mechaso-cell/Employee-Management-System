@@ -8,7 +8,7 @@ namespace Employee.api.Model
         {
         }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeModel> Employees { get; set; }
 
         public DbSet<Department> departments { get; set; }
 

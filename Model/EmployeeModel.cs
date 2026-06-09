@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Employee.api.Model
 {
     [Table("employeeTbl")]
-    public class Employee
+    public class EmployeeModel
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int employeeId { get; set; }

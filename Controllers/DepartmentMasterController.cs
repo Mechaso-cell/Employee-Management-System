@@ -1,4 +1,5 @@
 ﻿using Employee.api.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employee.api.Controllers
@@ -21,14 +22,32 @@ namespace Employee.api.Controllers
 
             return Ok(deptList);
         }
-
         [HttpPost("AddDepartment")]
         public IActionResult AddDepartment([FromBody] Department dept)
         {
-            _context.departments.Add(dept);
-            _context.SaveChanges();
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-            return Ok("Department Added Successfully");
+                // Check if department already exists (case-insensitive)
+                var exists = _context.departments
+                    .Any(x => x.departmentName.ToLower() == dept.departmentName.ToLower());
+
+                if (exists)
+                {
+                    return BadRequest("Department name already exists");
+                }
+
+                _context.departments.Add(dept);
+                _context.SaveChanges();
+
+                return Ok("Department Added Successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut("UpdateDepartment")]
