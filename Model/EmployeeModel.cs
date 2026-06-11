@@ -17,6 +17,8 @@ namespace Employee.api.Model
 
         public string email { get; set; } = string.Empty;
 
+        public string designationName { get; set; } = string.Empty;
+
         public string city { get; set; } = string.Empty;
 
         public string state { get; set; } = string.Empty;
@@ -30,5 +32,19 @@ namespace Employee.api.Model
         public int designationId { get; set; }
 
         public DateTime modifiedDate { get; set; }
+
+        public string role { get; set; } = string.Empty;
+
+    }
+
+    public class LoginDto
+    {
+        [Required]
+        [EmailAddress]
+
+        public string email { get; set; } = string.Empty;
+
+        [Required]
+        public string contactNumber { get; set; } = string.Empty;
     }
 }
