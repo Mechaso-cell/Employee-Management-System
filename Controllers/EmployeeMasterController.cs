@@ -179,5 +179,41 @@ namespace Employee.api.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] LoginDto login)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var user = _context.Employees
+                    .FirstOrDefault(x =>
+                        x.email == login.email &&
+                        x.contactNo == login.contactNumber);
+
+                if (user == null)
+                {
+                    return Unauthorized("Invalid email or contact number");
+                }
+
+                return Ok(new
+                {
+                    message = "Login successful",
+                    user.employeeId,
+                    user.name,
+                    user.email,
+                    user.contactNo,
+                    user.designationId,
+                    user.designationName,
+                    user.role
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
